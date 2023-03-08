@@ -1,18 +1,10 @@
 /*
- * Copyright (c) 2021 Blue Clover Devices
+ * Copyright (c) 2023 ipshiv @ Huld Oy
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-
- // #include <st/h7/stm32h753Xi.dtsi>
- // #include <st/h7/stm32h753zitx-pinctrl.dtsi>
  
  / {
-     chosen {
-         zephyr,console = &usart6;
-         zephyr,shell-uart = &usart6;
-     };
- 
      leds {
          compatible = "gpio-leds";
          green_led: led_0 {
@@ -37,23 +29,16 @@
 	};
  };
 
- &usart3 {
-     pinctrl-0 = <&usart3_tx_pd8 &usart3_rx_pd9>;
-     pinctrl-names = "default";
-     current-speed = <115200>;
-     status = "okay";
-
-     modbus0 {
-		compatible = "zephyr,modbus-serial";
-		status = "okay";
-		// de-gpios = I HAVE NO INFORMATION ABOUT DATA ENABLE PIN!!!
-	};
- };
-
  &usart6 {
     pinctrl-0 = <&usart6_tx_pc6 &usart6_rx_pc7>;
     pinctrl-names = "default";
     current-speed = <115200>;
     status = "okay";
+
+    modbus0 {
+		compatible = "zephyr,modbus-serial";
+		status = "okay";
+		// de-gpios = I HAVE NO INFORMATION ABOUT DATA ENABLE PIN!!!
+	};
 };
  
