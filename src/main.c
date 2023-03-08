@@ -143,6 +143,16 @@ void main(void)
 		}
 	}
 
+	for (int i = 0; i < ARRAY_SIZE(led_dev); i++) {
+		gpio_pin_set(led_dev[i].port, led_dev[i].pin, true);
+		k_sleep(K_MSEC(500));
+		gpio_pin_set(led_dev[i].port, led_dev[i].pin, false);
+		k_sleep(K_MSEC(500));
+		gpio_pin_set(led_dev[i].port, led_dev[i].pin, true);
+		k_sleep(K_MSEC(500));
+		gpio_pin_set(led_dev[i].port, led_dev[i].pin, false);
+	};
+
 #if DT_NODE_HAS_COMPAT(DT_PARENT(MODBUS_NODE), zephyr_cdc_acm_uart)
 	const struct device *const dev = DEVICE_DT_GET(DT_PARENT(MODBUS_NODE));
 	uint32_t dtr = 0;
